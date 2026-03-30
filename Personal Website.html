@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nathan (Peiqi) Jing | Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #f5f5f5;
+      --panel: #ececee;
+      --text: #141414;
+      --muted: #6c6c72;
+      --line: #d8d8dd;
+      --accent: #2563eb;
+      --white: #ffffff;
+      --shadow: 0 18px 45px rgba(0,0,0,0.12);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      color: var(--text);
+      background: linear-gradient(180deg, #fafafa 0%, #f2f2f4 100%);
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 330px 1fr;
+      min-height: 100vh;
+    }
+
+    .sidebar {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      background: #eff0f3;
+      border-right: 1px solid var(--line);
+      padding: 42px 34px 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .profile {
+      text-align: center;
+    }
+
+    .profile img {
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 6px solid var(--white);
+      box-shadow: 0 10px 24px rgba(0,0,0,0.08);
+    }
+
+    .profile h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      line-height: 1.1;
+      margin: 22px 0 10px;
+    }
+
+    .tagline {
+      margin: 0;
+      color: var(--accent);
+      font-size: 0.92rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+
+    .location {
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 0.96rem;
+    }
+
+    .nav {
+      margin-top: 34px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .nav a {
+      text-decoration: none;
+      color: var(--text);
+      font-size: 0.98rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      position: relative;
+      padding-bottom: 2px;
+    }
+
+    .nav a:hover,
+    .nav a.active {
+      color: var(--accent);
+    }
+
+    .nav a:hover::after,
+    .nav a.active::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      width: 100%;
+      height: 2px;
+      background: var(--accent);
+    }
+
+    .sidebar-footer {
+      font-size: 0.9rem;
+      color: var(--muted);
+      text-align: center;
+      line-height: 1.8;
+    }
+
+    .sidebar-footer a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .content {
+      padding: 0;
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      align-items: center;
+      background: #f8f8f8;
+    }
+
+    .hero-copy {
+      padding: 64px 72px;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      margin-bottom: 18px;
+      color: var(--accent);
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .hero-copy h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3rem, 6vw, 5.8rem);
+      line-height: 0.95;
+      margin: 0 0 24px;
+    }
+
+    .hero-copy p {
+      max-width: 620px;
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: #3f3f46;
+      margin-bottom: 34px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 24px;
+      border: 1.5px solid var(--text);
+      text-decoration: none;
+      color: var(--text);
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      transition: all 0.2s ease;
+      background: transparent;
+    }
+
+    .btn:hover {
+      background: var(--text);
+      color: var(--white);
+      transform: translateY(-1px);
+    }
+
+    .btn.primary {
+      background: var(--text);
+      color: var(--white);
+    }
+
+    .btn.primary:hover {
+      background: var(--accent);
+      border-color: var(--accent);
+    }
+
+    .hero-image {
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at 55% 35%, rgba(255,255,255,0.55), rgba(238,238,240,0.45)),
+        url('2.jpg') center 18% / cover no-repeat;
+      filter: grayscale(8%);
+      position: relative;
+    }
+
+    .section {
+      padding: 82px 72px;
+      border-top: 1px solid var(--line);
+      background: #fbfbfc;
+    }
+
+    .section:nth-of-type(even) {
+      background: #f5f6f8;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.4rem;
+      margin: 0 0 18px;
+    }
+
+    .section-intro {
+      max-width: 760px;
+      color: #4b5563;
+      line-height: 1.9;
+      margin-bottom: 34px;
+      font-size: 1.02rem;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 24px;
+    }
+
+    .card {
+      background: var(--white);
+      border: 1px solid #e3e5ea;
+      border-radius: 18px;
+      padding: 26px;
+      box-shadow: 0 10px 26px rgba(23, 23, 23, 0.04);
+    }
+
+    .card h3 {
+      margin: 0 0 14px;
+      font-size: 1.1rem;
+    }
+
+    .card ul {
+      padding-left: 18px;
+      margin: 0;
+      color: #4b5563;
+      line-height: 1.9;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 22px;
+    }
+
+    .timeline-item {
+      background: var(--white);
+      border: 1px solid #e3e5ea;
+      border-radius: 18px;
+      padding: 26px;
+      box-shadow: 0 10px 26px rgba(23, 23, 23, 0.04);
+    }
+
+    .timeline-item .meta {
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin-bottom: 10px;
+    }
+
+    .timeline-item h3 {
+      margin: 0 0 12px;
+      font-size: 1.18rem;
+    }
+
+    .timeline-item ul {
+      margin: 0;
+      padding-left: 18px;
+      color: #4b5563;
+      line-height: 1.85;
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 24px;
+    }
+
+    .project-grid-wide {
+      grid-template-columns: 1fr;
+    }
+
+    .project {
+      background: var(--white);
+      border: 1px solid #e3e5ea;
+      border-radius: 22px;
+      overflow: hidden;
+      box-shadow: 0 14px 34px rgba(0,0,0,0.06);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .project-horizontal {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      align-items: stretch;
+      width: 100%;
+    }
+
+    .project-image-wrap {
+      background: #f8f9fb;
+      border-right: 1px solid #edf0f3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+    }
+
+    .project-image {
+      width: 100%;
+      max-width: 760px;
+      height: auto;
+      display: block;
+      border-radius: 12px;
+      box-shadow: 0 10px 24px rgba(0,0,0,0.08);
+    }
+
+    .project-content {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+    }
+
+    .project-text-only {
+      grid-template-columns: 1fr;
+    }
+
+    .project-text-only .project-content {
+      width: 100%;
+    }
+
+    .project-top {
+      padding: 28px 28px 18px;
+      border-bottom: 1px solid #edf0f3;
+    }
+
+    .project-top span {
+      display: inline-block;
+      margin-bottom: 10px;
+      color: var(--accent);
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .project-top h3 {
+      margin: 0;
+      font-size: 1.2rem;
+    }
+
+    .project-body {
+      padding: 22px 28px 30px;
+      color: #4b5563;
+      line-height: 1.85;
+      flex: 1;
+    }
+
+    .project-body ul {
+      padding-left: 18px;
+      margin: 0 0 18px;
+    }
+
+    .project-tools {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .pill {
+      display: inline-flex;
+      padding: 7px 12px;
+      background: #eef3ff;
+      color: #2448a8;
+      border-radius: 999px;
+      font-size: 0.88rem;
+      font-weight: 600;
+    }
+
+    .contact-box {
+      background: linear-gradient(135deg, #171717 0%, #22252d 100%);
+      color: var(--white);
+      border-radius: 26px;
+      padding: 34px;
+      box-shadow: var(--shadow);
+    }
+
+    .contact-box h3 {
+      margin: 0 0 12px;
+      font-size: 1.5rem;
+      font-family: 'Playfair Display', serif;
+    }
+
+    .contact-box p {
+      color: rgba(255,255,255,0.8);
+      line-height: 1.8;
+      margin-bottom: 20px;
+    }
+
+    .contact-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .contact-list a,
+    .contact-list div {
+      color: var(--white);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    @media (max-width: 1100px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+
+      .sidebar {
+        position: relative;
+        height: auto;
+        border-right: none;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-image {
+        min-height: 65vh;
+      }
+    }
+
+    @media (max-width: 980px) {
+      .project-horizontal {
+        grid-template-columns: 1fr;
+      }
+
+      .project-image-wrap {
+        border-right: none;
+        border-bottom: 1px solid #edf0f3;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .hero-copy,
+      .section {
+        padding: 48px 24px;
+      }
+
+      .grid-2,
+      .project-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .profile h1 {
+        font-size: 1.7rem;
+      }
+
+      .hero-copy h2 {
+        font-size: 3rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <div>
+        <div class="profile">
+          <img src="Profile Photo.jpg" alt="Nathan (Peiqi) Jing portrait">
+          <h1>Nathan Jing</h1>
+          <p class="tagline">Data Analyst / Supply Chain Analytics</p>
+          <p class="location">Auckland, New Zealand</p>
+        </div>
+
+        <nav class="nav">
+          <a href="#home" class="active">Home</a>
+          <a href="#about">About</a>
+          <a href="#skills">Skills</a>
+          <a href="#experience">Experience</a>
+          <a href="#projects">Projects</a>
+          <a href="#education">Education</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </div>
+
+      <div class="sidebar-footer">
+        <div>Open-Study Work Visa</div>
+        <div><a href="mailto:jingpeiqi0913@gmail.com">jingpeiqi0913@gmail.com</a></div>
+        <div><a href="tel:02040312713">020 4031 2713</a></div>
+      </div>
+    </aside>
+
+    <main class="content">
+      <section class="hero" id="home">
+        <div class="hero-copy">
+          <span class="eyebrow">Portfolio</span>
+          <h2>I turn data into business decisions.</h2>
+          <p>
+            Nathan (Peiqi) Jing is a Business Analytics graduate with hands-on experience in Python, SQL, Power BI, and Excel. He focuses on turning complex data into clear, actionable insights for operations, supply chain, and business performance.
+          </p>
+          <div class="hero-actions">
+            <a class="btn primary" href="#projects">View Projects</a>
+            <a class="btn" href="#contact">Contact Me</a>
+          </div>
+        </div>
+        <div class="hero-image" aria-hidden="true"></div>
+      </section>
+
+      <section class="section" id="about">
+        <h2 class="section-title">About Me</h2>
+        <p class="section-intro">
+          I am currently seeking opportunities in Data Analyst and Supply Chain Analytics roles. My background combines technical analysis with business understanding, and I enjoy working with messy data, building structured workflows, and translating findings into practical actions.
+        </p>
+        <p class="section-intro">
+          During my internship at Fisher &amp; Paykel Healthcare, I worked with operational datasets, built analytical models, and helped reduce logistics costs by 16% while maintaining a 97% service level. I am particularly interested in using data to improve decision-making in operations, supply chain, and commercial environments.
+        </p>
+      </section>
+
+      <section class="section" id="skills">
+        <h2 class="section-title">Skills</h2>
+        <div class="grid-2">
+          <div class="card">
+            <h3>Technical</h3>
+            <ul>
+              <li>SQL</li>
+              <li>Python</li>
+              <li>Power BI</li>
+              <li>Excel</li>
+              <li>R</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Analytical</h3>
+            <ul>
+              <li>Data cleaning</li>
+              <li>Dashboarding</li>
+              <li>Forecasting</li>
+              <li>Validation</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Soft Skills</h3>
+            <ul>
+              <li>Communication</li>
+              <li>Problem solving</li>
+              <li>Detail-oriented mindset</li>
+              <li>Structured thinking</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Tools & Focus</h3>
+            <ul>
+              <li>Power Query</li>
+              <li>KPI reporting</li>
+              <li>Data workflow structuring</li>
+              <li>Supply chain analysis</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="experience">
+        <h2 class="section-title">Experience</h2>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="meta">Fisher &amp; Paykel Healthcare · Auckland, New Zealand · Mar 2025 – Jun 2025</div>
+            <h3>Supply Chain Analytics Intern (Python)</h3>
+            <ul>
+              <li>Processed and analysed operational datasets using Python (pandas), including data cleaning, transformation, and validation.</li>
+              <li>Built data-driven models to evaluate freight strategies, reducing logistics costs by <strong>16%</strong> while maintaining <strong>97% service levels</strong>.</li>
+              <li>Developed structured data workflows to support KPI tracking and reporting consistency.</li>
+              <li>Worked with multiple data sources, ensuring data accuracy and consistency for analysis.</li>
+              <li>Translated processed data into insights for business stakeholders.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="projects">
+        <h2 class="section-title">Projects</h2>
+
+        <div class="project-grid project-grid-wide">
+
+          <article class="project project-horizontal">
+            <div class="project-image-wrap">
+              <img src="fraud-project-poster.png" alt="ASB Fraud Detection Analytics Project poster" class="project-image">
+            </div>
+
+            <div class="project-content">
+              <div class="project-top">
+                <span>Project 01</span>
+                <h3>Fraud Detection Analytics Project</h3>
+              </div>
+              <div class="project-body">
+                <ul>
+                  <li>Cleaned and preprocessed <strong>500,000+ transaction records</strong>, including feature engineering and missing value handling.</li>
+                  <li>Built an end-to-end data pipeline in R for data preparation, modelling, and evaluation.</li>
+                  <li>Applied multiple models including Logistic Regression, Random Forest, LightGBM, and XGBoost, and selected the best-performing approach.</li>
+                  <li>Designed Power BI dashboards to communicate fraud insights and model outputs to stakeholders.</li>
+                </ul>
+                <div class="project-tools">
+                  <span class="pill">R</span>
+                  <span class="pill">Power BI</span>
+                  <span class="pill">Machine Learning</span>
+                  <span class="pill">Data Pipeline</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="project project-horizontal project-text-only">
+            <div class="project-content">
+              <div class="project-top">
+                <span>Project 02</span>
+                <h3>EV Distribution Network Design for New Zealand</h3>
+              </div>
+              <div class="project-body">
+                <ul>
+                  <li>Contributed to the design of a distribution network for a hypothetical overseas EV brand entering the New Zealand market, using public market, logistics, and warehouse data.</li>
+                  <li>Estimated regional demand by referencing Tesla registrations and EV market trends, then evaluated candidate distribution centre locations across Auckland, Wellington, and Canterbury.</li>
+                  <li>Supported facility, transportation, and inventory cost modelling, including port storage, DC operating costs, and per-unit vehicle transport assumptions.</li>
+                  <li>Participated in network optimization and simulation to compare profitability and resilience under demand volatility and port disruption scenarios.</li>
+                  <li>Helped recommend a one-port, two-DC network configuration that balanced cost efficiency with supply chain resilience.</li>
+                </ul>
+                <div class="project-tools">
+                  <span class="pill">Supply Chain Optimization</span>
+                  <span class="pill">AnyLogistix</span>
+                  <span class="pill">Network Design</span>
+                  <span class="pill">Simulation</span>
+                  <span class="pill">Cost Modelling</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </section>
+
+      <section class="section" id="education">
+        <h2 class="section-title">Education</h2>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="meta">University of Auckland · Apr 2024 – Sep 2025</div>
+            <h3>Master of Business Analytics (Supply Chain Management)</h3>
+            <ul>
+              <li>Relevant tools: SQL, Python, R, Power BI, Excel, AnyLogistix, Microsoft Project.</li>
+              <li>Focus areas: data analytics, decision modelling, and supply chain optimisation.</li>
+            </ul>
+          </div>
+          <div class="timeline-item">
+            <div class="meta">University of Auckland · Feb 2021 – Nov 2023</div>
+            <h3>Bachelor of Commerce (Marketing &amp; Management)</h3>
+            <ul>
+              <li>Relevant coursework included Business Statistics, Market Research, Consumer Behaviour, and Data-Driven Decision Making.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="contact">
+        <h2 class="section-title">Contact</h2>
+        <div class="contact-box">
+          <h3>Let’s connect.</h3>
+          <p>
+            I am currently open to Data Analyst and Supply Chain Analytics opportunities in Auckland and across New Zealand.
+          </p>
+          <div class="contact-list">
+            <div>📍 Auckland, New Zealand</div>
+            <div>🛂 Open-Study Work Visa</div>
+            <a href="mailto:jingpeiqi0913@gmail.com">📧 jingpeiqi0913@gmail.com</a>
+            <a href="tel:02040312713">📞 020 4031 2713</a>
+            <a href="https://www.linkedin.com/in/peiqi-jing-08029b253/" target="_blank" rel="noreferrer">🔗 LinkedIn Profile</a>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+</body>
+</html>
